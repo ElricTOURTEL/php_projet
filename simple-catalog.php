@@ -2,7 +2,7 @@
 
 <?php
 $products= ["Iphone", "Galaxy S25", "Samsung Galaxy zfold"];
-array_multisort($products);
+sort($products);
 $lastproduct=count($products);
 echo $products[$lastproduct-1] . "<br>";
 for ($i = count($products); $i >= 0; $i--){
