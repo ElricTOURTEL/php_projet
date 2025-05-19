@@ -11,8 +11,8 @@ class Item
         $this->url= $url;
     }
     public function display():void {
-        echo "Nom: ($this->name)<br>";
-        echo "Prix: ($this->price) euro <br>";
+        echo "<h1>Nom: ($this->name)</h1><br>";
+        echo "Prix: ($this->price) euro <br><br>";
         echo "URL: <a href=\"($this->url)\">($this->url)</a><br>";
     }
 }
