@@ -25,12 +25,14 @@ $products=[
     ],
 ];
 
-echo $products["iphone"]["name"];
 ?>
 
+<?php
+
+/*
 <div class="container my-5">
     <div class="row g-4">
-        <?php foreach($products as $products): ?>
+        <?php foreach($products as $element): ?>
             <div class="col-md-4">
                 <div class ="card h-100">
                     <img src="<?= htmlspecialchars($products["picture_url"])?>" class="card-img-top" alt="<?= htmlspecialchars($products["name"])?>">
@@ -44,6 +46,56 @@ echo $products["iphone"]["name"];
                 </div>
             </div>
             <?php endforeach; ?>
+    </div>
+</div> */?>
+
+
+
+<?php /*
+
+<div class="container my-5">
+    <div class="row g-4">
+        <?php $productsList = array_values($products);
+        for($i = 0; $i < count($products); $i++):
+        $product=$productsList[$i]; ?>
+            <div class="col-md-4">
+                <div class ="card h-100">
+                    <img src="<?= htmlspecialchars($product["picture_url"])?>" class="card-img-top" alt="<?= htmlspecialchars($product["name"])?>">
+                    <div class="card-body">
+                        <h5 class="card-title"><?= htmlspecialchars($product["name"]) ?></h5>
+                        <p class="card-text">Prix: <?= htmlspecialchars($product["price"]) ?></p>
+                        <p class="card-text">Poids: <?= htmlspecialchars($product["weight"]) ?></p>
+                        <p class="card-text">
+                        <?= $products["discount"] ? "Remise : {$products["discount"]}%": "Aucune remise pour ce produit" ?></p>
+                    </div>
+                </div>
+            </div>
+            <?php endfor; ?>
+    </div>
+</div> */?>
+
+<div class="container my-5">
+    <div class="row g-4">
+        <?php $productsList = array_values($products);
+        $i=0;
+        while($i < count($products)):
+        $product=$productsList[$i]; ?>
+            <div class="col-md-4">
+                <div class ="card h-100">
+                    <img src="<?= htmlspecialchars($product["picture_url"])?>" class="card-img-top" alt="<?= htmlspecialchars($product["name"])?>">
+                    <div class="card-body">
+                        <h5 class="card-title"><?= htmlspecialchars($product["name"]) ?></h5>
+                        <p class="card-text">Prix: <?= htmlspecialchars($product["price"]) ?></p>
+                        <p class="card-text">Poids: <?= htmlspecialchars($product["weight"]) ?></p>
+                        <p class="card-text">
+                        <?= $products["discount"] ? "Remise : {$products["discount"]}%": "Aucune remise pour ce produit" ?></p>
+                        <?php
+                        $i++;
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <?php endwhile; ?>
     </div>
 </div>
 
