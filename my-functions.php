@@ -10,4 +10,7 @@ function calculPromo(float $totalprice, float $discount): float{
     $totalprice=$totalprice * $realdiscount;
     return $totalprice;
 }
+function calculPoids(int $poids, int $quantity): int{
+    return $poids*$quantity;
+}
 ?>
