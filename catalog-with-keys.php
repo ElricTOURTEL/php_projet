@@ -66,7 +66,7 @@ $products=[
                         <p class="card-text">Prix: <?= htmlspecialchars($product["price"]) ?></p>
                         <p class="card-text">Poids: <?= htmlspecialchars($product["weight"]) ?></p>
                         <p class="card-text">
-                        <?= $products["discount"] ? "Remise : {$products["discount"]}%": "Aucune remise pour ce produit" ?></p>
+                        <?= $product["discount"] ? "Remise : {$product["discount"]}%": "Aucune remise pour ce produit" ?></p>
                     </div>
                 </div>
             </div>
@@ -88,7 +88,7 @@ $products=[
                         <p class="card-text">Prix: <?= htmlspecialchars($product["price"]) ?></p>
                         <p class="card-text">Poids: <?= htmlspecialchars($product["weight"]) ?></p>
                         <p class="card-text">
-                        <?= $products["discount"] ? "Remise : {$products["discount"]}%": "Aucune remise pour ce produit" ?></p>
+                        <?= $product["discount"] ? "Remise : {$product["discount"]}%": "Aucune remise pour ce produit" ?></p>
                         <?php
                         $i++;
                         ?>
