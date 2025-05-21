@@ -29,5 +29,8 @@ foreach ($products as &$produit) {
     if ($produit["discount"] != null) {
         $produit["promo_price"] = calculPromo($produit["ttc"], $produit["discount"]);
     }
+    else{
+        $produit["promo_price"]=$produit["ttc"];
+    }
 }
 ?>
