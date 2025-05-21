@@ -1,4 +1,18 @@
 <?php
+session_start();
+setcookie(
+    'USER',
+    'elric',
+    [
+        'expires' => time() + 365*24*3600,
+        'secure' => true,
+        'httponly' => true,
+    ]
+);
+echo $_COOKIE['USER'];
+require_once('my-functions.php');
+?>
+<?php
 $title=basename($_SERVER['PHP_SELF']);
 ?>
 

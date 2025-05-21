@@ -1,4 +1,5 @@
 <?php
+/** */
 function calculTVA(float $prix, float $taux=20): float{
     return $prix * $taux/100;
 }
