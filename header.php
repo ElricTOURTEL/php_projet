@@ -9,12 +9,12 @@ require_once('data/products.php');
 $i=0;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if($i<1){
-        $tab=$_POST['quantity_' . $produit["name"]];
+        $tab=$_POST['quantity' . $produit["name"]];
         $i++;
     }
     else {
-    array_push($tab, $_POST['quantity_' . $produit["name"]]);
-    $_SESSION = $_POST['quantity_' . $produit["name"]];
+    array_push($tab, $_POST['quantity' . $produit["name"]]);
+    $_SESSION = $_POST['quantity' . $produit["name"]];
     $_SESSION['quantity'] = $tab;
     header('Location: catalog-with-keys.php?added=true');
     exit;

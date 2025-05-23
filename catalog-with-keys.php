@@ -40,8 +40,8 @@ require_once 'data/products.php';
 
                         <div class="mt-3">
                             <form method="post" action="">
-                                <label for="quantity_<?= htmlspecialchars($product["name"]) ?>" class="form-label">Quantité :</label>
-                                <input type="number" name="quantity_[<?= htmlspecialchars($product["name"]) ?>]" id="quantity_<?= htmlspecialchars($product["name"]) ?>" class="form-control" min="0" value="0">
+                                <label for="quantity<?= htmlspecialchars($product["name"]) ?>" class="form-label">Quantité :</label>
+                                <input type="number" name="quantity<?= htmlspecialchars($product["name"]) ?>]" id="quantity<?= htmlspecialchars($product["name"]) ?>" class="form-control" min="0" value="0">
                                 <button type="submit" class="btn btn-primary btn-lg">Commander</button>
                             </form>
                         </div>
