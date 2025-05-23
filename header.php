@@ -1,19 +1,36 @@
 <?php
 session_start();
-setcookie(
-    'USER',
-    'elric',
-    [
-        'expires' => time() + 365*24*3600,
-        'secure' => true,
-        'httponly' => true,
-    ]
-);
-echo $_COOKIE['USER'];
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 require_once('my-functions.php');
+require_once('data/products.php');
+//$_SESSION=[];
+//$_GET=[];
+$i=0;
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if($i<1){
+        $tab=$_POST['quantity_' . $produit["name"]];
+        $i++;
+    }
+    else {
+    array_push($tab, $_POST['quantity_' . $produit["name"]]);
+    $_SESSION = $_POST['quantity_' . $produit["name"]];
+    $_SESSION['quantity'] = $tab;
+    header('Location: catalog-with-keys.php?added=true');
+    exit;
+    }
+}
+if (isset($_GET['added'])) {
+    echo "<div class='alert alert-success'>Article ajouté au panier !</div>";
+}
+
+
+
+
+
 ?>
 <?php
-$title=basename($_SERVER['PHP_SELF']);
+$title = basename($_SERVER['PHP_SELF']);
 ?>
 
 
@@ -28,7 +45,7 @@ $title=basename($_SERVER['PHP_SELF']);
     <link href="style.css" rel="stylesheet">
     <title>Hike & Camp: <?php echo ucfirst(pathinfo($title, PATHINFO_FILENAME)); ?></title>
     <meta name="description" content="Bienvenue sur le site de Hike & Camp version PHP vous êtes sur la page <?php echo ucfirst(pathinfo($title, PATHINFO_FILENAME)); ?>"
-    <link rel="icon" type="image/x-icon" href="./Images/Logo.png">
+        <link rel="icon" type="image/x-icon" href="./Images/Logo.png">
 </head>
 
 <body>

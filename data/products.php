@@ -23,6 +23,7 @@ $products = [
         "picture_url" => "https://www.pexels.com/fr-fr/photo/personne-tenant-un-ipad-noir-221185/"
     ],
 ];
+$tab=[];
 foreach ($products as &$produit) {
     $produit["tva"] = calculTVA($produit["price"]);
     $produit["ttc"] = calculTTC($produit["price"]);

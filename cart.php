@@ -2,10 +2,13 @@
 
 <?php /*echo var_dump($_POST["quantity"]);*/
 require_once('data/products.php');
-require_once('my-functions.php'); ?>
+require_once('my-functions.php'); 
+
+
+?>
 <div class="container my-5">
     <div class="row g-4">
-        <?php foreach ($_POST["quantity"] as $productName => $quantite): ?>
+        <?php foreach ($_SESSION["quantity"] as $productName => $quantite): ?>
             <?php if ((int)$quantite > 0): ?>
                 <?php foreach ($products as $product): ?>
                     <?php if ($product["name"] === $productName): ?>
@@ -43,4 +46,6 @@ require_once('my-functions.php'); ?>
         <?php endforeach; ?>
     </div> <!-- row -->
 </div> <!-- container -->
-                            <?php include('footer.php'); ?>
+
+
+<?php include('footer.php'); ?>
