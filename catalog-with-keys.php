@@ -7,12 +7,13 @@
         exit;
     }
 } ?>
-
+<?php
+    echo "le Session ID est : ". session_id();
+?>
+<br>
 <?php
 require_once 'data/products.php';
 ?>
-<?php var_dump($tab); ?>
-<br>
 <?php var_dump($_SESSION); ?>
 <br>
 <?php var_dump($_POST); ?>
@@ -21,20 +22,22 @@ require_once 'data/products.php';
 
 <div class="container my-5">
     <div class="row g-4">
-        <?php foreach ($products as $product): ?>
+        <?php foreach($mysqlClient->query('SELECT products.name, products.weight, products.disponibility, products.quantity, products.price, products.vat, products.discount, products.product_total_price, Images.url
+FROM products
+LEFT JOIN  Images ON Images.product_id=products.id') as $product): ?>
             <div class="col-md-4">
                 <div class="card h-100 shadow-sm">
-                    <img src="<?= htmlspecialchars($product["picture_url"]) ?>" class="card-img-top" alt="<?= htmlspecialchars($product["name"]) ?>">
+                    <img src="<?= $product["url"] ?>" class="card-img-top" alt="<?= htmlspecialchars($product["name"]) ?>">
                     <div class="card-body">
-                        <h5 class="card-title"><?= htmlspecialchars($product["name"]) ?></h5>
+                        <h5 class="card-title"><?= htmlspecialchars($product["name"])?></h5>
                         <p class="card-text mb-1">Prix HT : <?= htmlspecialchars($product["price"]) ?> €</p>
                         <p class="card-text mb-1">Poids : <?= htmlspecialchars($product["weight"]) ?> g</p>
-                        <p class="card-text mb-1">TVA (20%) : <?= htmlspecialchars($product["tva"]) ?> €</p>
-                        <p class="card-text mb-1">Prix TTC : <?= htmlspecialchars($product["ttc"]) ?> €</p>
+                        <p class="card-text mb-1">TVA (20%) : <?= htmlspecialchars(calculTVA($product["price"], $product["vat"])) ?> €</p>
+                        <p class="card-text mb-1">Prix TTC : <?= htmlspecialchars(calculTTC($product["price"], $product["vat"])) ?> €</p> 
 
-                        <?php if ($product["discount"] !== null): ?>
+                        <?php if ($product["discount"] !== null && $product["discount"] !== 0): ?>
                             <p class="card-text text-success fw-bold">
-                                Prix remisé : <?= htmlspecialchars($product["promo_price"]) ?> €
+                                Prix remisé : <?= htmlspecialchars($product["discount_value"]) ?> €
                             </p>
                         <?php endif; ?>
 
@@ -48,7 +51,7 @@ require_once 'data/products.php';
                     </div>
                 </div>
             </div>
-        <?php endforeach; ?>
+        <?php endforeach;?>
         <form method="post" action="catalog-with-keys.php">
             <input type="hidden" name="action" value="vider_panier">
             <button type="submit" class="btn btn-danger">Vider le panier</button>

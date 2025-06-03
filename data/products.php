@@ -1,6 +1,6 @@
 <?php
 require_once 'my-functions.php';
-$products = [
+/*$products = [
     "iphone" => [
         "name" => "Iphone",
         "price" => 450.0,
@@ -33,5 +33,5 @@ foreach ($products as &$produit) {
     else{
         $produit["promo_price"]=$produit["ttc"];
     }
-}
+}*/
 ?>

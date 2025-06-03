@@ -3,11 +3,12 @@ session_start();
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 require_once('my-functions.php');
-require_once('data/products.php');
+/*require_once('data/products.php');*/
+require_once('dbconnexion.php');
 //$_SESSION=[];
 //$_GET=[];
 $i=0;
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+/*if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if($i<1){
         $tab=$_POST['quantity' . $produit["name"]];
         $i++;
@@ -22,24 +23,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 if (isset($_GET['added'])) {
     echo "<div class='alert alert-success'>Article ajouté au panier !</div>";
-}
+}*/
 ?>
-<?php
-$servername="adminer.local";
-$username="business";
-$password="motdepasse";
-try{
-    $mysqlClient = new PDO(
-    "mysql:host=$servername;dbname=database_hikeandcamp", $username, $password);
-    echo "connexion réussie";
-}
-catch (Exception $e)
-{
-    die('Erreur : ' . $e->getMessage());
-    echo "connexion echoué";
-};
 
-?>
 <?php
 $title = basename($_SERVER['PHP_SELF']);
 ?>
