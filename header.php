@@ -1,13 +1,12 @@
 <?php
 session_start();
-ini_set('display_errors', 1);
 error_reporting(E_ALL);
+ini_set('display_errors', 1);
 require_once('my-functions.php');
 /*require_once('data/products.php');*/
 require_once('dbconnexion.php');
 //$_SESSION=[];
 //$_GET=[];
-$i=0;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_SESSION = $_POST;
     if(!empty($_SESSION['cart'])){
@@ -16,15 +15,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if($quantity>0){
             $productID = $product['id'];
             $query = $mysqlClient->prepare(
-                'INSERT INTO cart (products_id, quantity, customer_id, sessid) VALUES (:productID, :quantity, :customerID, :sessid)'
+                'INSERT INTO cart (customer_id, products_id, quantity, sessid) VALUES (:customerID, :productID, :quantity, :sessid)'
             );
             $query->execute([
+                'customerID' => 1,
                 'productID' => $productID,
                 'quantity' => $quantity,
-                'customerID' => 1,
                 'sessid' => session_id()
             ]);
-            unset($_SESSION['cart']);
+            unset($_SESSION);
         }
 
     }

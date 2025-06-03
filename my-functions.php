@@ -1,5 +1,6 @@
 <?php
-/** */
+require_once('dbconnexion.php');
+
 function calculTVA(float $prix, float $taux): float{
     return $prix * $taux/100;
 }
@@ -17,16 +18,10 @@ function calculPoids(int $poids, int $quantity): int{
 function calculTotal(int $total, int $quantity): float{
     return $total*$quantity;
 }
-/*class product{
-    public function get_article(){
-        $servername="adminer.local";
-        $username="business";
-        $password="motdepasse";
-        try{
-            $mysqlClient = new PDO(
-            "mysql:host=$servername;dbname=database_hikeandcamp", $username, $password);
-            $productdbList=$mysqlClient->('SELECT * FROM products');
-        }
-    }    
+/*function addToCart(){
+    $query = $mysqlClient->prepare(
+        'INSERT INTO cart (customer_id, products_id, quantity, sessid) VALUES (:customerID, :productID, :quantity, :sessid)'
+    );
 }*/
+
 ?>
