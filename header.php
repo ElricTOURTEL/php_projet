@@ -8,22 +8,27 @@ require_once('dbconnexion.php');
 //$_SESSION=[];
 //$_GET=[];
 $i=0;
-/*if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if($i<1){
-        $tab=$_POST['quantity' . $produit["name"]];
-        $i++;
-    }
-    else {
-    array_push($tab, $_POST['quantity' . $produit["name"]]);
-    $_SESSION = $_POST['quantity' . $produit["name"]];
-    $_SESSION['quantity'] = $tab;
-    header('Location: catalog-with-keys.php?added=true');
-    exit;
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $_SESSION = $_POST;
+    if(!empty($_SESSION['cart'])){
+        $productID=array_key_first(($_SESSION));
+        $quantity=(int)$_SESSION[$productID];
+        if($quantity>0){
+            $productID = $product['id'];
+            $query = $mysqlClient->prepare(
+                'INSERT INTO cart (products_id, quantity, customer_id, sessid) VALUES (:productID, :quantity, :customerID, :sessid)'
+            );
+            $query->execute([
+                'productID' => $productID,
+                'quantity' => $quantity,
+                'customerID' => 1,
+                'sessid' => session_id()
+            ]);
+            unset($_SESSION['cart']);
+        }
+
     }
 }
-if (isset($_GET['added'])) {
-    echo "<div class='alert alert-success'>Article ajouté au panier !</div>";
-}*/
 ?>
 
 <?php

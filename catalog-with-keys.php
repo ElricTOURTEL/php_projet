@@ -22,7 +22,7 @@ require_once 'data/products.php';
 
 <div class="container my-5">
     <div class="row g-4">
-        <?php foreach($mysqlClient->query('SELECT products.name, products.weight, products.disponibility, products.quantity, products.price, products.vat, products.discount, products.product_total_price, Images.url
+        <?php foreach($mysqlClient->query('SELECT products.id, products.name, products.weight, products.disponibility, products.quantity, products.price, products.vat, products.discount, products.product_total_price, Images.url
 FROM products
 LEFT JOIN  Images ON Images.product_id=products.id') as $product): ?>
             <div class="col-md-4">
@@ -43,8 +43,8 @@ LEFT JOIN  Images ON Images.product_id=products.id') as $product): ?>
 
                         <div class="mt-3">
                             <form method="post" action="">
-                                <label for="quantity<?= htmlspecialchars($product["name"]) ?>" class="form-label">Quantité :</label>
-                                <input type="number" name="quantity<?= htmlspecialchars($product["name"]) ?>]" id="quantity<?= htmlspecialchars($product["name"]) ?>" class="form-control" min="0" value="0">
+                                <label for="<?= htmlspecialchars($product["id"]) ?>" class="form-label">Quantité :</label>
+                                <input type="number" name="<?= htmlspecialchars($product["id"]) ?>" id="<?= htmlspecialchars($product["id"]) ?>" class="form-control" min="0" value="0">
                                 <button type="submit" class="btn btn-primary btn-lg">Commander</button>
                             </form>
                         </div>
