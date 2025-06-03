@@ -23,10 +23,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 if (isset($_GET['added'])) {
     echo "<div class='alert alert-success'>Article ajouté au panier !</div>";
 }
-
-
-
-
+?>
+<?php
+$servername="adminer.local";
+$username="business";
+$password="motdepasse";
+try{
+    $mysqlClient = new PDO(
+    "mysql:host=$servername;dbname=database_hikeandcamp", $username, $password);
+    echo "connexion réussie";
+}
+catch (Exception $e)
+{
+    die('Erreur : ' . $e->getMessage());
+    echo "connexion echoué";
+};
 
 ?>
 <?php
