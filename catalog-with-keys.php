@@ -14,8 +14,6 @@
 <?php
 require_once 'data/products.php';
 ?>
-<?php var_dump($_SESSION); ?>
-<br>
 <?php var_dump($_POST); ?>
 <br>
 <?php var_dump($_GET); ?>

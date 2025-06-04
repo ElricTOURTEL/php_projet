@@ -9,11 +9,11 @@ require_once('dbconnexion.php');
 //$_GET=[];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_SESSION = $_POST;
-    if(!empty($_SESSION['cart'])){
+    if(!empty($_SESSION)){
         $productID=array_key_first(($_SESSION));
         $quantity=(int)$_SESSION[$productID];
         if($quantity>0){
-            $productID = $product['id'];
+            if($productID==$mysqlClient->query('SELECT products_id FROM cart'))
             $query = $mysqlClient->prepare(
                 'INSERT INTO cart (customer_id, products_id, quantity, sessid) VALUES (:customerID, :productID, :quantity, :sessid)'
             );

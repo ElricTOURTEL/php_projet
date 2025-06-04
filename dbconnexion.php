@@ -5,7 +5,6 @@ $password="motdepasse";
 try{
     $mysqlClient = new PDO(
     "mysql:host=$servername;dbname=database_hikeandcamp", $username, $password);
-    echo "connexion réussie";
 }
 catch (Exception $e)
 {
